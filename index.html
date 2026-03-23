@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Postres SQL - Práctica 3.1</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background-color: #fff5f8; } /* Rosa por tus gustos */
+        .card { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; background: white; }
+    </style>
+</head>
+<body>
+    <h1>Proyecto: Postres SQL</h1>
+    <p><strong>Integrantes:</strong> [Tu Nombre]</p>
+    <p><strong>URLs:</strong> <a href="[URL_DE_RENDER]">App en Render</a></p>
+
+    <div class="card">
+        <h2>Arquitectura de la Solución</h2>
+        <p>Frontend (GitHub Pages) <-> Backend (Render/Node.js) <-> DB (MongoDB Atlas)</p>
+    </div>
+
+    <div class="card">
+        <h2>Probar App Dinámica</h2>
+        <input type="text" id="itemInput" placeholder="Nuevo postre">
+        <button onclick="guardar()">Guardar</button>
+        <ul id="lista"></ul>
+    </div>
+
+    <script>
+        const API_URL = "[URL_DE_RENDER]/items";
+
+        async function cargar() {
+            const res = await fetch(API_URL);
+            const data = await res.json();
+            document.getElementById('lista').innerHTML = data.map(i => `<li>${i.nombre}</li>`).join('');
+        }
+        async function guardar() {
+            const nombre = document.getElementById('itemInput').value;
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ nombre })
+            });
+            cargar();
+        }
+        cargar();
+    </script>
+</body>
+</html>
