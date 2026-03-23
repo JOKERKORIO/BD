@@ -29,3 +29,7 @@ app.post('/items', async (req, res) => {
 
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));
+app.get('/', (req, res) => {
+  res.send('¡La API de Postres SQL está funcionando correctamente! 🚀');
+});
+
