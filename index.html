@@ -1,50 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Postres SQL - Práctica 3.1</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; background-color: #fff5f8; } /* Rosa por tus gustos */
-        .card { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; background: white; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Adopción de animales</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #;
+      text-align: center;
+    }
+
+    h1 {
+      color: #c0654a;
+    }
+
+    .animal {
+      background: LightCoral;
+      border: 2px solid #ccc;
+      margin: 5px;
+      padding: 5px;
+      display: inline-block;
+      width: 200px;
+    }
+
+    button {
+      background: #c0654a;
+      color: rose;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    form {
+      margin-top: 20px;
+      background: white;
+      padding: 15px;
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
-    <h1>Proyecto: Postres SQL</h1>
-    <p><strong>Integrantes:</strong></p>
-    <p> Gudiño Luna Josue Ethianne</p>
-    <p> Mendoza Nieto Oscar Osvaldo</p>
-    <p> Avila Mendoza Natalia</p>
-    <p><strong>URLs:</strong> <a href="https://bd-eq6i.onrender.com">App en Render</a></p>
 
+  <h1>Centro de Adopción</h1>
+
+  <h2>Animales disponibles</h2>
+
+  <div class="animal">
+    <p>🐶 Bruno</p>
+    <p>Labrador</p>
+    <button onclick="adoptar('Bruno')">Adoptar</button>
+  </div>
+
+  <div class="animal">
+    <p>🐱 Luna</p>
+    <p>Gato</p>
+    <button onclick="adoptar('Luna')">Adoptar</button>
+  </div>
+
+  <div class="animal">
+    <p>🐦 Pico</p>
+    <p>Periquito</p>
+    <button onclick="adoptar('Pico')">Adoptar</button>
+  </div>
+
+  <h2>Solicitud</h2>
+
+  <form onsubmit="enviar(event)">
+    <input type="text" id="nombre" placeholder="Tu nombre"><br><br>
+    <input type="text" id="telefono" placeholder="Teléfono"><br><br>
+    <select id="animal">
+      <option>Bruno</option>
+      <option>Luna</option>
+      <option>Pico</option>
+    </select><br><br>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <p id="mensaje"></p>
+
+  <script>
+    function adoptar(nombre) {
+      document.getElementById("animal").value = nombre;
+      alert("Seleccionaste a " + nombre);
+    }
+
+    function enviar(e) {
+      e.preventDefault();
+      document.getElementById("mensaje").innerText = "Solicitud enviada";
+    }
+  </script>
+  <hr>
+
+  <h3>Integrantes</h3>
+  <ul>
+    <li>Gudiño Luna Josué Ethianne</li>
+    <li>Mendoza Nieto Oscar Osvaldo</li>
+    <li>Avila Mendoza Natalia</li>
+  </ul>
+
+  <p>IPN ESCOM · Bases de Datos</p>
+        <p><strong>URLs:</strong> <a href="https://bd-eq6i.onrender.com">App en Render</a></p>
     <div class="card">
-        <h2>Arquitectura de la Solución</h2>
         <p>Frontend (GitHub Pages) <-> Backend (Render/Node.js) <-> DB (MongoDB Atlas)</p>
     </div>
-
     <div class="card">
-        <h2>Probar App Dinámica</h2>
-        <input type="text" id="itemInput" placeholder="Nuevo postre">
-        <button onclick="guardar()">Guardar</button>
-        <ul id="lista"></ul>
-    </div>
-
-    <script>
-        const API_URL = "https://bd-eq6i.onrender.com/items";
-
-        async function cargar() {
-            const res = await fetch(API_URL);
-            const data = await res.json();
-            document.getElementById('lista').innerHTML = data.map(i => `<li>${i.nombre}</li>`).join('');
-        }
-        async function guardar() {
-            const nombre = document.getElementById('itemInput').value;
-            await fetch(API_URL, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ nombre })
-            });
-            cargar();
-        }
-        cargar();
-    </script>
 </body>
+</html>
 </html>
