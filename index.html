@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <style>
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-logo img {
+  mix-blend-mode: multiply;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+}
+</style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Patitas Felices — Centro de Adopción</title>
@@ -423,7 +455,7 @@
      NAVEGACIÓN
      Cambia "Patitas Felices" por el nombre real del centro
      ================================================================ -->
-<nav>
+  <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">
       <!-- Ícono pata — reemplaza el <svg> por otro ícono si prefieres -->
